@@ -64,16 +64,47 @@ public class EggDropper {
 	 * Considering that if the egg breaks from a floor, it also breaks from the upper floors, and considering that if it does not break from a floor, 
 	 * it does not break from the lower floors, it can be considered that the search array is ordered.
 	 * @return the numberEggDrop
+	 * @throws Exception 
 	 */
-	public int minEggDropper100() {
+	public int minEggDropper100() throws Exception {
 		
 		int  maxFloorEggNotBroken = 0;
-		int  minFloorEggBroken = 0;
+		int  minFloorEggBroken = 100;
 		
-		int currentFloor = 100;
+		int currentFloor;
 
+		Boolean criticalFloorFound = false;
 		
 		
+		while(!criticalFloorFound) {
+			
+			//We calculate the next floor adding to the lowest floor the difference between both divided by two
+			currentFloor = maxFloorEggNotBroken + ((minFloorEggBroken - maxFloorEggNotBroken) / 2);
+			
+			numberEggDrop++;
+			
+			if(isEggBroken(currentFloor)) {
+				minFloorEggBroken = currentFloor;
+				numberEggBroken++;
+			} else {
+				maxFloorEggNotBroken = currentFloor;
+			}
+			
+			//If the difference between the highest floor that the egg has not been broken and the floor lower than the egg has been broken is one, 
+			//we have found the critical floor, since the critical floor will be the lowest floor that the egg has been broken
+			if((minFloorEggBroken - maxFloorEggNotBroken) == 1) {
+				criticalFloorFound = true;
+			}
+			
+			//If the floor is 0 the search has failed
+			if(currentFloor == 0) {
+				break;
+			}
+		}
+		
+		if(!criticalFloorFound) {
+			throw new Exception("The critical floor has not been found");
+		}
 		
 		return numberEggDrop;
 		
@@ -84,12 +115,8 @@ public class EggDropper {
 	 * @param currentFloor
 	 * @return true if currentFloor is greater than or equal to the criticalFloor, or false otherwise
 	 */
-	private Boolean isEggBroken(int currentFloor) {
-		
-		return currentFloor >= this.getSkyscraper().getCriticalFloor();
-		
-	}
-	
-	
+	private Boolean isEggBroken(int currentFloor) {		
+		return currentFloor >= this.getSkyscraper().getCriticalFloor();		
+	}	
 
 }
