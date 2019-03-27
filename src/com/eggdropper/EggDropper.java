@@ -70,11 +70,23 @@ public class EggDropper {
 		int  maxFloorEggNotBroken = 0;
 		int  minFloorEggBroken = 0;
 		
-		int currentFloor = 100/2;
+		int currentFloor = 100;
 
 		
 		
+		
 		return numberEggDrop;
+		
+	}
+	
+	/**
+	 * Check if an egg has broken after an egg drop test
+	 * @param currentFloor
+	 * @return true if currentFloor is greater than or equal to the criticalFloor, or false otherwise
+	 */
+	private Boolean isEggBroken(int currentFloor) {
+		
+		return currentFloor >= this.getSkyscraper().getCriticalFloor();
 		
 	}
 	
