@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import com.eggdropper.EggDropper;
+import com.eggdropper.Skyscraper;
+
 /**
  * 
  * @author Sergio Muñoz
@@ -13,7 +16,10 @@ public class EggDropperTest {
 
 	@Test
 	void test() {
-		fail("Not yet implemented");
+		
+		Skyscraper skyscraper = new Skyscraper();
+		
+		EggDropper eggDropper = new EggDropper();
 	}
 
 }

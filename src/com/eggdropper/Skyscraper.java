@@ -7,7 +7,23 @@ package com.eggdropper;
  */
 public class Skyscraper {
 
+	private int criticalFloor;
+	
 	public Skyscraper() {
-		
+		this.generateCriticalFloor();
+	}
+
+	/**
+	 * @return the criticalFloor
+	 */
+	public int getCriticalFloor() {
+		return criticalFloor;
+	}
+
+	/**
+	 * Generate a random critical floor
+	 */
+	public void generateCriticalFloor() {
+		this.criticalFloor = (int) (Math.random() * 100) + 1;
 	}
 }
