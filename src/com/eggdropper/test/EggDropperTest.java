@@ -14,12 +14,19 @@ import com.eggdropper.Skyscraper;
  */
 public class EggDropperTest {
 
+	/**
+	 * Check that no more launches than floors have the skyscraper
+	 */
 	@Test
-	void test() {
+	void minEggDropper100Test() {
 		
 		Skyscraper skyscraper = new Skyscraper();
 		
-		EggDropper eggDropper = new EggDropper();
+		EggDropper eggDropper = new EggDropper(skyscraper);
+		
+		int minimunEggDropper = eggDropper.minEggDropper100();
+		
+		assertTrue(minimunEggDropper >= 1 && minimunEggDropper <= 100);
 	}
 
 }
