@@ -4,7 +4,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class EggDropperTest {
+/**
+ * 
+ * @author Sergio Muñoz
+ * Implements the egg dropper unit tests
+ */
+public class EggDropperTest {
 
 	@Test
 	void test() {
