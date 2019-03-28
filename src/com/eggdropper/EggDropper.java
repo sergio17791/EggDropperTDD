@@ -97,7 +97,6 @@ public class EggDropper {
 			
 			//We calculate the next floor adding to the lowest floor the difference between both divided by two
 			currentFloor = calculateNextFloorByBinarySearchAlgorithm();
-			
 			numberEggDrop++;
 			
 			if(isEggBroken()) {
@@ -106,13 +105,9 @@ public class EggDropper {
 			} else {
 				maxFloorEggNotBroken = currentFloor;
 			}
-			
-			//If the difference between the highest floor that the egg has not been broken and the floor lower than the egg has been broken is one, 
-			//we have found the critical floor, since the critical floor will be the lowest floor that the egg has been broken
-			if((minFloorEggBroken - maxFloorEggNotBroken) == 1) {
-				criticalFloorFound = true;
-			}
-			
+
+			criticalFloorFound = checkCriticalFloorFound();
+						
 			//If the floor is 0 the search has failed
 			if(currentFloor == 0) {
 				break;
@@ -194,11 +189,27 @@ public class EggDropper {
 		//We calculate the number of divisions for the search of the floor, while we have more eggs than this number, we can use the binary search algorithm.
 		int floorsByDivision = calculateNumberFloorsByDivision();
 		
+		
 		while(!criticalFloorFound) {
 			
 			//Calculate the next floor according to the remaining eggs and the number of floors by division
 			currentFloor = calculateNextFloor(eggsRemaining, floorsByDivision);
 			numberEggDrop++;
+			
+			if(isEggBroken()) {
+				minFloorEggBroken = currentFloor;
+				numberEggBroken++;
+				eggsRemaining--;
+				//If the egg has been broken we are using the algorithm by divisions, we return to the previous division to increase floor by floor
+				if(eggsRemaining < floorsByDivision) {
+					currentFloor = currentFloor - floorsByDivision;
+				}
+				
+			} else {
+				maxFloorEggNotBroken = currentFloor;
+			}
+
+			criticalFloorFound = checkCriticalFloorFound();
 			
 			//If the floor is 101 the search has failed
 			if(currentFloor == 0 || currentFloor > skyscraper.getFloorsNumber()) {
@@ -271,6 +282,16 @@ public class EggDropper {
 		}	
 		
 		return nextFloor;
+	}
+	
+	/**
+	 * Check according to minFloorEggBroken and maxFloorEggNotBroken if the critical floor has been found
+	 * @return true if minFloorEggBroken - maxFloorEggNotBroken = 1, or false otherwise
+	 */
+	private boolean checkCriticalFloorFound() {
+		//If the difference between the highest floor that the egg has not been broken and the floor lower than the egg has been broken is one, 
+		//we have found the critical floor, since the critical floor will be the lowest floor that the egg has been broken
+		return ((minFloorEggBroken - maxFloorEggNotBroken) == 1);
 	}
 	
 	
