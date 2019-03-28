@@ -2,7 +2,7 @@ package com.eggdropper.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.eggdropper.EggDropper;
@@ -17,7 +17,7 @@ public class EggDropperTest {
 	
 	private Skyscraper skyscraper;
 	
-	@Before
+	@BeforeEach
 	void initSkyscraper () {
 		 skyscraper = new Skyscraper();
 	}
@@ -40,6 +40,10 @@ public class EggDropperTest {
 		assertTrue(minimunEggDropper >= 1 && minimunEggDropper <= 100);
 	}
 	
+	/**
+	 * Check that no more launches than floors have the skyscraper on the minEggDropper2
+	 * @throws Exception 
+	 */
 	@Test
 	void minEggDropper2Test() throws Exception {
 		
