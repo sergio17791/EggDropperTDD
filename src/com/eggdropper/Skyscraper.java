@@ -8,9 +8,30 @@ package com.eggdropper;
 public class Skyscraper {
 
 	private int criticalFloor;
+	private int floorsNumber;
 	
 	public Skyscraper() {
-		this.generateCriticalFloor();
+		this.floorsNumber = 100;
+		this.generateCriticalFloor();		
+	}
+	
+	public Skyscraper(int floorsNumber) {
+		this.floorsNumber = floorsNumber;
+		this.generateCriticalFloor();		
+	}
+
+	/**
+	 * @return the floorsNumber
+	 */
+	public int getFloorsNumber() {
+		return floorsNumber;
+	}
+
+	/**
+	 * @param floorsNumber the floorsNumber to set
+	 */
+	public void setFloorsNumber(int floorsNumber) {
+		this.floorsNumber = floorsNumber;
 	}
 
 	/**
@@ -24,6 +45,6 @@ public class Skyscraper {
 	 * Generate a random critical floor
 	 */
 	public void generateCriticalFloor() {
-		this.criticalFloor = (int) (Math.random() * 100) + 1;
+		this.criticalFloor = (int) (Math.random() * floorsNumber) + 1;
 	}
 }

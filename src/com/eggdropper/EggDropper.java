@@ -12,12 +12,14 @@ public class EggDropper {
 	private Skyscraper skyscraper;
 	private int currentFloor;
 	private int  maxFloorEggNotBroken;
+	private int minFloorEggBroken;
 	
 	public EggDropper(Skyscraper skyscraper) {
 		this.numberEggDrop = 0;
 		this.numberEggBroken = 0;
 		this.currentFloor = 0;
 		this.maxFloorEggNotBroken = 0;
+		this.minFloorEggBroken = 100;
 		this.setSkyscraper(skyscraper);
 	}
 	
@@ -85,8 +87,6 @@ public class EggDropper {
 	 * @throws Exception 
 	 */
 	public int minEggDropper100() throws Exception {
-
-		int minFloorEggBroken = 100;
 		
 		Boolean criticalFloorFound = false;
 		
@@ -175,7 +175,14 @@ public class EggDropper {
 		if(!criticalFloorFound) {
 			throw new Exception("The critical floor has not been found");
 		}
+				
+		return numberEggDrop;
 		
+	}
+	
+	public int minEggDropperX(int eggsAmount) throws Exception {
+		
+		Boolean criticalFloorFound = false;
 		
 		return numberEggDrop;
 		
