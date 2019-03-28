@@ -15,8 +15,8 @@ public class Skyscraper {
 		this.generateCriticalFloor();		
 	}
 	
-	public Skyscraper(int floorsNumber) {
-		this.floorsNumber = floorsNumber;
+	public Skyscraper(int floorsNumber) throws Exception {		
+		this.setFloorsNumber(floorsNumber);;
 		this.generateCriticalFloor();		
 	}
 
@@ -29,8 +29,14 @@ public class Skyscraper {
 
 	/**
 	 * @param floorsNumber the floorsNumber to set
+	 * @throws Exception 
 	 */
-	public void setFloorsNumber(int floorsNumber) {
+	public void setFloorsNumber(int floorsNumber) throws Exception {
+		
+		if(floorsNumber <= 0) {
+			throw new Exception("The number of floors must be greater than 0");
+		}
+		
 		this.floorsNumber = floorsNumber;
 	}
 
